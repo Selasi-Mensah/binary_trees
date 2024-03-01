@@ -1,17 +1,23 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_preorder - function that creates a binary tree node
- * @tree: pointer to the parent node of the node to create
- * @func: pointer of function
- * Return: pointer to the new node, or NULL on failure
+ * binary_tree_preorder - goes through a binary tree using pre-order traversal
+ * @tree: pointer to the root node of the tree to traverse
+ * @func: pointer to a function to call for each node.
+ * The value in the node must be passed as a parameter to this function.
  */
+
 void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int))
 {
-	if (tree == NULL || func == NULL)
+	if (func == NULL || tree == NULL)
 		return;
 
+	/* Call the function on the value of the current node*/
 	func(tree->n);
+
+	/* traverse the left subtree recursively */
 	binary_tree_preorder(tree->left, func);
+
+	/* traverse the right subtree recursively */
 	binary_tree_preorder(tree->right, func);
 }
